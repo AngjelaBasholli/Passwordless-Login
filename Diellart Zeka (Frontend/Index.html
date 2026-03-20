@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Passwordless Login</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      margin-top: 300px;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="login">
+    <h2>Passwordless Login</h2>
+
+    <input type="email" id="email" placeholder="Enter your email" />
+    <br><br>
+
+    <button onclick="sendLink()">Send Magic Link</button>
+  </div>
+
+  <div id="checkInbox" style="display:none;">
+    <h2>Check your inbox</h2>
+    <p>We sent a magic link to:</p>
+    <strong id="userEmail"></strong>
+  </div>
+
+  <script>
+    function sendLink() {
+  const email = document.getElementById("email").value.trim();
+
+  // check if email is empty
+  if (email === "") {
+    alert("Please enter an email address");
+    return;
+  }
+
+  // basic email format check
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailPattern.test(email)) {
+    alert("Please enter a valid email address");
+    return;
+  }
+
+  // if everything is correct, continue
+  document.getElementById("login").style.display = "none";
+  document.getElementById("checkInbox").style.display = "block";
+
+  document.getElementById("userEmail").innerText = email;
+}
+  </script>
+
+</body>
+</html> 
